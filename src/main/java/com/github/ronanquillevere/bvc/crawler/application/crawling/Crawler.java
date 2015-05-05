@@ -4,20 +4,25 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.ronanquillevere.bvc.crawler.domain.crawling.DataInjector;
 import com.github.ronanquillevere.bvc.crawler.domain.video.Video;
-import com.github.ronanquillevere.bvc.crawler.domain.youtube.YoutubeDataFetcher;
 
 public class Crawler {
 	
-	private YoutubeDataFetcher youtubeDataFetcher;
+	private DataInjector dataInjector;
+	
+	Logger logger = LoggerFactory.getLogger(Crawler.class);
+	
 	
 	@Inject
-	public Crawler(YoutubeDataFetcher youtubeDataFetcher) {
-		this.youtubeDataFetcher = youtubeDataFetcher;
+	public Crawler(DataInjector dataInjector) {
+		this.dataInjector = dataInjector;
 	}
 	public void crawl(){
-		List<Video> videos = youtubeDataFetcher.fetchData();
-		
-		System.out.println("Crawled videos;" + videos.size()); //TODO @rqu slf
+		List<Video> videos = dataInjector.fetchData();
+		logger.info("Crawled videos;" + videos.size());
 	}
 }
