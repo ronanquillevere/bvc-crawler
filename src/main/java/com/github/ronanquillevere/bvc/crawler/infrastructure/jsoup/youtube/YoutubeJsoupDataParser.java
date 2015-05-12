@@ -5,22 +5,21 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.ronanquillevere.bvc.crawler.domain.crawling.DataParser;
 import com.github.ronanquillevere.bvc.crawler.domain.video.Video;
 import com.github.ronanquillevere.bvc.crawler.domain.video.WebSite;
-import com.github.ronanquillevere.bvc.crawler.infrastructure.jsoup.JsoupParser;
 
-public class YoutubeJsoupParser implements JsoupParser {
+public class YoutubeJsoupDataParser implements DataParser<Document>{
 
 	private static final String CLASS_META_INFO = "yt-lockup-meta-info";
 
-	private Logger logger = LoggerFactory.getLogger(TestYoutubeJsoupParser.class);
+	private Logger logger = LoggerFactory.getLogger(YoutubeJsoupDataParser.class);
 	
 	private static final String ATTRIBUTE_HREF = "href";
 	private static final String YOUTUBE_URL = "http://www.youtube.com";

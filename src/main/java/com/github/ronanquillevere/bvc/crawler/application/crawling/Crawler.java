@@ -7,22 +7,24 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.ronanquillevere.bvc.crawler.domain.crawling.DataInjector;
+import com.github.ronanquillevere.bvc.crawler.domain.crawling.DataCrawler;
 import com.github.ronanquillevere.bvc.crawler.domain.video.Video;
 
 public class Crawler {
 	
-	private DataInjector dataInjector;
+	private DataCrawler dataCrawler;
 	
 	Logger logger = LoggerFactory.getLogger(Crawler.class);
 	
 	
 	@Inject
-	public Crawler(DataInjector dataInjector) {
-		this.dataInjector = dataInjector;
+	public Crawler(DataCrawler crawler) {
+		this.dataCrawler = crawler;
 	}
+	
 	public void crawl(){
-		List<Video> videos = dataInjector.fetchData();
+		String url = "https://www.youtube.com/results?search_query=cover";
+		List<Video> videos = dataCrawler.crawl(url);
 		logger.info("Crawled videos;" + videos.size());
 	}
 }

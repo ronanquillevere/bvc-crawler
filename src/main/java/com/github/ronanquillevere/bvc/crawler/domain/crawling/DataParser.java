@@ -4,6 +4,6 @@ import java.util.List;
 
 import com.github.ronanquillevere.bvc.crawler.domain.video.Video;
 
-public interface DataInjector {
-	public List<Video> fetchData();
+public interface DataParser<T> {
+	List<Video> parse (T input);
 }
